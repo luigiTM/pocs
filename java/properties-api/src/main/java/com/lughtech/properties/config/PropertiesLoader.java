@@ -1,4 +1,5 @@
-package main.java.com.lughtech.properties.config;
+package com.lughtech.properties.config;
 
-public class PropertiesLoader {
+public interface PropertiesLoader {
+    void loadProperties();
 }

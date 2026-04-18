@@ -1,9 +1,9 @@
-package main.java.com.lughtech.properties.config;
+package com.lughtech.properties.config;
 
 public class PropertiesManager {
 
-    private PropertiesLoader propertiesLoader;
-    private PropertiesWriter propertiesWriter;
+    private final PropertiesLoader propertiesLoader;
+    private final PropertiesWriter propertiesWriter;
 
     public PropertiesManager(PropertiesLoader propertiesLoader, PropertiesWriter propertiesWriter) {
         this.propertiesLoader = propertiesLoader;
@@ -11,11 +11,11 @@ public class PropertiesManager {
     }
 
     public void loadConfiguration() {
-
+        this.propertiesLoader.loadProperties();
     }
 
     public void writeConfiguration() {
-
+        this.propertiesWriter.writeProperties();
     }
 
     public void getConfiguration() {

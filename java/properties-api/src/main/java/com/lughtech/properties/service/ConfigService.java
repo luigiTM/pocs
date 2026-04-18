@@ -1,8 +1,10 @@
-package main.java.com.lughtech.properties.service;
+package com.lughtech.properties.service;
+
+import com.lughtech.properties.config.PropertiesManager;
 
 public class ConfigService {
 
-    private PropertiesManager propertiesManager;
+    private final PropertiesManager propertiesManager;
 
     public ConfigService(PropertiesManager propertiesManager) {
         this.propertiesManager = propertiesManager;
