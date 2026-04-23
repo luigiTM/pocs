@@ -10,4 +10,8 @@ public class ConfigService {
         this.propertiesManager = propertiesManager;
     }
 
+    public String getAppName() {
+        return this.propertiesManager.getProperties().getProperty("appName");
+    }
+
 }
