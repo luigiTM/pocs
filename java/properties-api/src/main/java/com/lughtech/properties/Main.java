@@ -23,10 +23,12 @@ public class Main {
 
         ConfigService configService = new ConfigService(xmlPropertiesHandler);
 
+        configService.init();
+
         System.out.println("AppName: " + configService.getAppName());
 
         configService.setAppName("NewAppName");
 
-        configService.removedProperty("appVersion");
+        configService.removedAppName();
     }
 }

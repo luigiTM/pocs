@@ -8,8 +8,12 @@ public class ConfigService {
 
     private final PropertiesHandler propertiesHandler;
 
-    public ConfigService(PropertiesHandler propertiesHandler) throws IOException {
+    public ConfigService(PropertiesHandler propertiesHandler) {
         this.propertiesHandler = propertiesHandler;
+
+    }
+
+    public void init() throws IOException {
         this.propertiesHandler.loadProperties();
     }
 
@@ -22,8 +26,8 @@ public class ConfigService {
         this.propertiesHandler.writeProperties();
     }
 
-    public void removedProperty(String key) throws IOException {
-        this.propertiesHandler.removeProperty(key);
+    public void removedAppName() throws IOException {
+        this.propertiesHandler.removeProperty("appName");
         this.propertiesHandler.writeProperties();
     }
 
