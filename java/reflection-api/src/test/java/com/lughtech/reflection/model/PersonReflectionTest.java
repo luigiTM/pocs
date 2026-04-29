@@ -98,7 +98,7 @@ public class PersonReflectionTest {
 
         List<String> actualFields = getFieldNames(fields);
 
-        assertEquals(2, actualFields.size());
+        assertEquals(3, actualFields.size());
         assertTrue(actualFields.containsAll(Arrays.asList("name", "age")));
     }
 
@@ -153,5 +153,126 @@ public class PersonReflectionTest {
 
         assertEquals("Mark Doe", adult3.getName());
         assertEquals(30, adult3.getAge());
+    }
+
+    @Test
+    public void givenClass_whenGetsPublicFields_thenCorrect() throws ClassNotFoundException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Field[] fields = adultClass.getFields();
+
+        assertEquals(1, fields.length);
+        assertEquals("TYPE", fields[0].getName());
+    }
+
+    @Test
+    public void givenClass_whenGetsPublicFieldByName_thenCorrect() throws ClassNotFoundException, NoSuchFieldException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Field field = adultClass.getField("TYPE");
+
+        assertEquals("TYPE", field.getName());
+    }
+
+    @Test
+    public void givenClass_whenGetsDeclaredFields_thenCorrect() throws ClassNotFoundException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Field[] fields = adultClass.getDeclaredFields();
+
+        assertEquals(1, fields.length);
+        assertEquals("isWorking", fields[0].getName());
+    }
+
+    @Test
+    public void givenClass_whenGetsFieldsByName_thenCorrect() throws ClassNotFoundException, NoSuchFieldException {
+        Class<?> birdClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Field field = birdClass.getDeclaredField("isWorking");
+
+        assertEquals("isWorking", field.getName());
+    }
+
+    @Test
+    public void givenClassField_whenGetsType_thenCorrect() throws ClassNotFoundException, NoSuchFieldException {
+        Field field = Class.forName("com.lughtech.reflection.model.Adult")
+                .getDeclaredField("isWorking");
+        Class<?> fieldClass = field.getType();
+
+        assertEquals("boolean", fieldClass.getSimpleName());
+    }
+
+    @Test
+    public void givenClassField_whenSetsAndGetsValue_thenCorrect() throws ClassNotFoundException, NoSuchMethodException, NoSuchFieldException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Adult adult = (Adult) adultClass.getConstructor().newInstance();
+        Field field = adultClass.getDeclaredField("isWorking");
+        field.setAccessible(true);
+
+        assertFalse(field.getBoolean(adult));
+        assertFalse(adult.isWorking());
+
+        field.set(adult, true);
+
+        assertTrue(field.getBoolean(adult));
+        assertTrue(adult.isWorking());
+    }
+
+    @Test
+    public void givenClassField_whenGetsAndSetsWithNull_thenCorrect() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Field field = adultClass.getField("TYPE");
+        field.setAccessible(true);
+
+        assertEquals("human", field.get(null));
+    }
+
+    @Test
+    public void givenClass_whenGetsAllPublicMethods_thenCorrect() throws ClassNotFoundException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Method[] methods = adultClass.getMethods();
+        List<String> methodNames = getMethodNames(methods);
+
+        assertTrue(methodNames.containsAll(Arrays
+                .asList("equals", "notifyAll", "hashCode",
+                        "isWorking", "toString")));
+    }
+
+    @Test
+    public void givenClass_whenGetsOnlyDeclaredMethods_thenCorrect() throws ClassNotFoundException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        List<String> actualMethodNames
+                = getMethodNames(adultClass.getDeclaredMethods());
+
+        List<String> expectedMethodNames = Arrays
+                .asList("setWorking", "isWorking", "needsToWork");
+
+        assertEquals(expectedMethodNames.size(), actualMethodNames.size());
+        assertTrue(expectedMethodNames.containsAll(actualMethodNames));
+        assertTrue(actualMethodNames.containsAll(expectedMethodNames));
+    }
+
+    @Test
+    public void givenMethodName_whenGetsMethod_thenCorrect() throws Exception {
+        Adult adult = new Adult();
+        Method walksMethod = adult.getClass().getDeclaredMethod("isWorking");
+        Method setWalksMethod = adult.getClass().getDeclaredMethod("setWorking", boolean.class);
+
+        assertTrue(walksMethod.canAccess(adult));
+        assertTrue(setWalksMethod.canAccess(adult));
+    }
+
+    @Test
+    public void givenMethod_whenInvokes_thenCorrect() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
+        Adult adult = (Adult) adultClass.getConstructor().newInstance();
+        Method setWorkingMethod = adultClass.getDeclaredMethod("setWorking", boolean.class);
+        Method isWorkingMethod = adultClass.getDeclaredMethod("isWorking");
+        boolean walks = (boolean) isWorkingMethod.invoke(adult);
+
+        assertFalse(walks);
+        assertFalse(adult.isWorking());
+
+        setWorkingMethod.invoke(adult, true);
+
+        boolean isWorking = (boolean) isWorkingMethod.invoke(adult);
+        assertTrue(isWorking);
+        assertTrue(adult.isWorking());
     }
 }

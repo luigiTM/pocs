@@ -3,6 +3,7 @@ package com.lughtech.reflection.model;
 import com.lughtech.reflection.actions.Work;
 
 public abstract class Person implements Work {
+    public static final String TYPE = "human";
     private String name;
     private final int age;
 
