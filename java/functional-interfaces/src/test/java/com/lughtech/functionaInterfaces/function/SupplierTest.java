@@ -10,7 +10,7 @@ public class SupplierTest {
 
     @Test
     void whenReturnFixedValue_thenReturnFixedValue() {
-        //Suppliers have no parameters and return a values
+        //Suppliers have no parameters and return a value
         Supplier<String> fixedValue = () -> "fixedValue";
 
         assertEquals("fixedValue", fixedValue.get());
