@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ListStreamTest {
+public class StreamTest {
 
     private final List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
 
@@ -28,6 +28,7 @@ public class ListStreamTest {
 
         assertTrue(allNumbersSmallerThanTwenty);
     }
+
 
     @Test
     void givenListOfNumber_whenAnyNumberGreaterThenFive_thenReturnTrue() {
@@ -117,4 +118,39 @@ public class ListStreamTest {
         assertFalse(any.isEmpty());
         assertEquals(2, any.get());
     }
+
+    @Test
+    void givenListOfNumber_whenFindFirst_thenReturnOne() {
+        Optional<Integer> any = numbers.stream().findFirst();
+
+        assertFalse(any.isEmpty());
+        assertEquals(1, any.get());
+    }
+
+    @Test
+    void givenListOfNumber_whenFindFirstFilteringGreaterThanFive_thenReturnSix() {
+        Optional<Integer> any = numbers.stream().filter(number -> number > 5).findFirst();
+
+        assertFalse(any.isEmpty());
+        assertEquals(6, any.get());
+    }
+
+    @Test
+    void givenListOfNumber_whenMapToAddOne_thenReturnListAddedOneToEachElement() {
+        List<Integer> mapped = numbers.stream().map(number -> number + 1).toList();
+
+        assertFalse(mapped.isEmpty());
+        assertEquals(2, mapped.get(0));
+        assertEquals(3, mapped.get(1));
+        assertEquals(4, mapped.get(2));
+        assertEquals(5, mapped.get(3));
+        assertEquals(6, mapped.get(4));
+        assertEquals(7, mapped.get(5));
+        assertEquals(8, mapped.get(6));
+        assertEquals(9, mapped.get(7));
+        assertEquals(10, mapped.get(8));
+        assertEquals(11, mapped.get(9));
+    }
+
+
 }
