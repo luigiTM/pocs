@@ -152,5 +152,4 @@ public class StreamTest {
         assertEquals(11, mapped.get(9));
     }
 
-
 }
