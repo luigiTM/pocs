@@ -2,24 +2,23 @@ package com.lughtech.workerpool.queue;
 
 import com.lughtech.workerpool.core.Task;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
 public class TaskQueue {
 
-    private BlockingQueue<Task> queue;
+    private final BlockingQueue<Task> queue;
 
-    public TaskQueue() {
-        this.queue = new SynchronousQueue<>();
+    public TaskQueue(int queueSize) {
+        this.queue = new ArrayBlockingQueue<>(queueSize);
     }
 
-    public boolean submit(Task task) {
-        // Block if full
-        return this.queue.add(task);
+    public void submit(Task task) throws InterruptedException {
+        this.queue.put(task);
     }
 
     public Task take() throws InterruptedException {
-        // Block until task is available
         return this.queue.take();
     }
 }
