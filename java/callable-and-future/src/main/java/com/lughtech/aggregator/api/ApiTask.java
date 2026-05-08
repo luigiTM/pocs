@@ -20,7 +20,7 @@ public abstract class ApiTask implements Callable<ApiResult> {
         long start = System.currentTimeMillis();
         try {
             var response = httpClientProvider.makeRequest(apiUrl);
-            if (response.statusCode() > 200 && response.statusCode() < 300) {
+            if (response.statusCode() >= 200 && response.statusCode() < 300) {
                 return new ApiResult(apiName, true, response.statusCode(), response.body(), (System.currentTimeMillis() - start), null);
             }
             return new ApiResult(apiName, false, response.statusCode(), response.body(), (System.currentTimeMillis() - start), null);
