@@ -1,0 +1,1 @@
+rootProject.name = "locks-and-atomic-variables"
