@@ -7,12 +7,12 @@ import java.util.concurrent.locks.ReentrantLock;
 public class BankAccount {
 
     private UUID id;
-    private float balance;
+    private long balance;
     private Lock lock;
 
     public BankAccount() {
         this.id = UUID.randomUUID();
-        this.balance = 0;
+        this.balance = 5000;
         this.lock = new ReentrantLock();
     }
 
@@ -20,16 +20,20 @@ public class BankAccount {
         return this.id;
     }
 
-    public float deposit(float amount) {
+    public Lock getLock() {
+        return lock;
+    }
+
+    public long deposit(long amount) {
         this.balance += amount;
         return this.balance;
     }
 
-    public float withdraw(float amount) {
+    public long withdraw(long amount) {
         if (balance > amount) {
             this.balance -= amount;
             return amount;
         }
-        return 0F;
+        throw new RuntimeException("Insufficient balance");
     }
 }
