@@ -9,11 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class SpyTest {
+    
+    private List<String> spyList;
 
     @Test
     void givenSpy_whenRealMethodIsCalled_thenShouldExecuteRealBehavior() {
         List<String> list = new ArrayList<>();
-        List<String> spyList = spy(list);
+       spyList = spy(list);
 
         spyList.add("One");
         spyList.add("Two");
@@ -27,7 +29,7 @@ class SpyTest {
 
     @Test
     void givenSpy_whenMethodIsStubbed_thenShouldReturnStubbedValue() {
-        List<String> spyList = spy(new ArrayList<>());
+        spyList = spy(new ArrayList<>());
 
         doReturn("Mocked").when(spyList).get(0);
 
@@ -36,7 +38,7 @@ class SpyTest {
 
     @Test
     void givenSpy_whenUsingWhenThenReturnOnRealMethod_thenShouldCallRealMethodDuringStubbing() {
-        List<String> spyList = spy(new ArrayList<>());
+        spyList = spy(new ArrayList<>());
 
         assertThrows(IndexOutOfBoundsException.class, () ->
                 when(spyList.get(0)).thenReturn("Mocked")
@@ -45,7 +47,7 @@ class SpyTest {
 
     @Test
     void givenSpy_whenUsingDoReturn_thenShouldNotCallRealMethodDuringStubbing() {
-        List<String> spyList = spy(new ArrayList<>());
+        spyList = spy(new ArrayList<>());
 
         doReturn("Mocked").when(spyList).get(0);
 
@@ -54,7 +56,7 @@ class SpyTest {
 
     @Test
     void givenSpy_whenRealAndStubbedMethodsAreMixed_thenShouldUseBothBehaviors() {
-        List<String> spyList = spy(new ArrayList<>());
+        spyList = spy(new ArrayList<>());
 
         spyList.add("One");
 
@@ -70,7 +72,7 @@ class SpyTest {
 
     @Test
     void givenSpy_whenVoidMethodIsStubbed_thenShouldNotExecuteRealMethod() {
-        List<String> spyList = spy(new ArrayList<>());
+        spyList = spy(new ArrayList<>());
 
         doNothing().when(spyList).clear();
 
@@ -84,7 +86,7 @@ class SpyTest {
 
     @Test
     void givenSpy_whenVoidMethodThrowsException_thenShouldThrowConfiguredException() {
-        List<String> spyList = spy(new ArrayList<>());
+        spyList = spy(new ArrayList<>());
 
         doThrow(new IllegalStateException("Cannot clear list"))
                 .when(spyList)
@@ -95,7 +97,7 @@ class SpyTest {
 
     @Test
     void givenSpy_whenReset_thenShouldRemoveStubbingAndInteractions() {
-        List<String> spyList = spy(new ArrayList<>());
+        spyList = spy(new ArrayList<>());
 
         doReturn(100).when(spyList).size();
 

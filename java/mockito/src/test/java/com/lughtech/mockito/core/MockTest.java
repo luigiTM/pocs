@@ -9,9 +9,11 @@ import static org.mockito.Mockito.*;
 
 class MockTest {
 
+    private List<String> mockedList;
+
     @Test
     void givenList_whenAddAndClear_thenVerifyCalledMethods() {
-        List<String> mockedList = mock(List.class);
+        mockedList = mock(List.class);
 
         mockedList.add("One");
         mockedList.add("Two");
@@ -24,7 +26,7 @@ class MockTest {
 
     @Test
     void givenMock_whenMethodNotStubbed_thenReturnDefaultValues() {
-        List<String> mockedList = mock(List.class);
+        mockedList = mock(List.class);
 
         assertEquals(0, mockedList.size());
         assertFalse(mockedList.isEmpty());
@@ -33,7 +35,7 @@ class MockTest {
 
     @Test
     void givenMock_whenStubbed_thenReturnConfiguredValue() {
-        List<String> mockedList = mock(List.class);
+        mockedList = mock(List.class);
 
         when(mockedList.get(0)).thenReturn("One");
 
@@ -43,7 +45,7 @@ class MockTest {
 
     @Test
     void givenMock_whenCalledMultipleTimes_thenVerifyInvocationCount() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
         mockedList.add("One");
@@ -56,14 +58,14 @@ class MockTest {
 
     @Test
     void givenMock_whenNoMethodCalled_thenVerifyNoInteractions() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         verifyNoInteractions(mockedList);
     }
 
     @Test
     void givenMock_whenAllInteractionsVerified_thenVerifyNoMoreInteractions() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
 
@@ -73,7 +75,7 @@ class MockTest {
 
     @Test
     void givenMock_whenMethodCalled_thenVerifyAtLeastAndAtMost() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
         mockedList.add("One");
@@ -86,7 +88,7 @@ class MockTest {
 
     @Test
     void givenMock_whenReset_thenPreviousInteractionsAreRemoved() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
 
@@ -97,7 +99,7 @@ class MockTest {
 
     @Test
     void givenMock_whenClearInvocations_thenStubbingIsKeptButInteractionsAreRemoved() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         when(mockedList.get(0)).thenReturn("One");
 

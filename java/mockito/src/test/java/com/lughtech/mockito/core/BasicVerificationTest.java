@@ -8,10 +8,12 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 class BasicVerificationTest {
+    
+    private List<String> mockedList;
 
     @Test
     void givenMock_whenMethodCalled_thenVerifyInvocation() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
 
@@ -20,7 +22,7 @@ class BasicVerificationTest {
 
     @Test
     void givenMock_whenMethodCalledMultipleTimes_thenVerifyInvocationCount() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
         mockedList.add("One");
@@ -32,7 +34,7 @@ class BasicVerificationTest {
 
     @Test
     void givenMock_whenMethodNotCalled_thenVerifyNever() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
 
@@ -41,7 +43,7 @@ class BasicVerificationTest {
 
     @Test
     void givenMock_whenMethodCalled_thenVerifyAtLeastAndAtMost() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
         mockedList.add("One");
@@ -53,7 +55,7 @@ class BasicVerificationTest {
 
     @Test
     void givenMock_whenMethodsCalled_thenVerifyOrderOfInvocations() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
         mockedList.add("Two");
@@ -68,14 +70,14 @@ class BasicVerificationTest {
 
     @Test
     void givenMock_whenNoInteractionOccurs_thenVerifyNoInteractions() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         verifyNoInteractions(mockedList);
     }
 
     @Test
     void givenMock_whenAllInteractionsVerified_thenVerifyNoMoreInteractions() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.add("One");
 
@@ -85,7 +87,7 @@ class BasicVerificationTest {
 
     @Test
     void givenMock_whenOnlyOneMethodCalled_thenVerifyOnly() {
-        List<String> mockedList = mock(List.class);
+         mockedList = mock(List.class);
 
         mockedList.clear();
 
