@@ -16,8 +16,9 @@ public class OrderRepository {
     }
 
     public Order saveOrder(Order order) {
-        var id = this.inMemoryStore.keySet().stream().max((a,b) ->  b - a).orElse(1);
-        this.inMemoryStore.put(id, order);
-        return new Order(id);
+        var id = this.inMemoryStore.keySet().stream().max((a,b) ->  b - a).orElse(0) + 1;
+        var savedOrder = new Order(id, order.description());
+        this.inMemoryStore.put(id, savedOrder);
+        return savedOrder;
     }
 }

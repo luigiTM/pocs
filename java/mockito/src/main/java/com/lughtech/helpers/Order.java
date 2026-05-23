@@ -1,4 +1,4 @@
 package com.lughtech.helpers;
 
-public record Order(Integer id) {
+public record Order(Integer id, String description) {
 }

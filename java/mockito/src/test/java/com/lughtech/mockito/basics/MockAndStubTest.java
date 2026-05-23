@@ -6,7 +6,6 @@ import com.lughtech.helpers.OrderService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -15,7 +14,6 @@ import static org.mockito.Mockito.when;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MockAndStubTest {
 
-    @Mock
     private OrderRepository orderRepository;
 
     private OrderService orderService;
@@ -28,7 +26,7 @@ public class MockAndStubTest {
 
     @Test
     void shouldReturnOrderWhenUsingGetIdOne() {
-        when(orderRepository.getOrderById(1)).thenReturn(new Order(1));
+        when(orderRepository.getOrderById(1)).thenReturn(new Order(1, "description"));
         var order = orderService.getOrderById(1);
 
         assertNotNull(order);
@@ -37,7 +35,7 @@ public class MockAndStubTest {
 
     @Test
     void shouldReturnOrderWhenUsingGetIdTwo() {
-        when(orderRepository.getOrderById(2)).thenReturn(new Order(2));
+        when(orderRepository.getOrderById(2)).thenReturn(new Order(2, "description"));
         var order = orderService.getOrderById(2);
 
         assertNotNull(order);

@@ -5,13 +5,11 @@ import com.lughtech.helpers.OrderRepository;
 import com.lughtech.helpers.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import static org.mockito.Mockito.*;
 
 public class VerifyInteractionsTest {
 
-    @Mock
     private OrderRepository orderRepository;
 
     private OrderService orderService;
@@ -24,7 +22,7 @@ public class VerifyInteractionsTest {
 
     @Test
     void shouldCallOneTimeRepositoryGetOrderById() {
-        when(orderRepository.getOrderById(1)).thenReturn(new Order(1));
+        when(orderRepository.getOrderById(1)).thenReturn(new Order(1, "description"));
         orderService.getOrderById(1);
 
         verify(orderRepository, times(1)).getOrderById(1);
@@ -35,8 +33,8 @@ public class VerifyInteractionsTest {
 
     @Test
     void shouldCallTwoTimeRepositoryGetOrderById() {
-        when(orderRepository.getOrderById(1)).thenReturn(new Order(1));
-        when(orderRepository.getOrderById(2)).thenReturn(new Order(2));
+        when(orderRepository.getOrderById(1)).thenReturn(new Order(1, "description"));
+        when(orderRepository.getOrderById(2)).thenReturn(new Order(2, "description"));
         orderService.getOrderById(1);
         orderService.getOrderById(2);
 
