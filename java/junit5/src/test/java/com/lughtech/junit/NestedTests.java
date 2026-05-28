@@ -1,0 +1,43 @@
+package com.lughtech.junit;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+public class NestedTests {
+
+    @BeforeEach()
+    void beforeEach() {
+        System.out.println("Before each from parent class");
+    }
+
+    @Nested
+    class FirstNestedClass {
+
+        @BeforeEach()
+        void beforeEach() {
+            System.out.println("Before each from first nested test class");
+        }
+
+        @Test
+        void firstNestedTest() {
+            System.out.println("This is a nested test");
+        }
+
+    }
+
+    @Nested
+    class SecondNestedClass {
+
+        @BeforeEach()
+        void beforeEach() {
+            System.out.println("Before each from second nested test class");
+        }
+
+        @Test
+        void secondNestedTest() {
+            System.out.println("This is another nested test");
+        }
+
+    }
+}

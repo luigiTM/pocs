@@ -1,23 +1,55 @@
 package com.lughtech.junit;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.time.Month;
+import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.List;
+import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParameterizedTests {
+
+    static List<String> cities = Arrays.asList("Madrid", "Rome", "Paris", "London");
 
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE})
     void shouldReturnTrueIfNumberIsOdd(Integer number) {
         assertTrue(isOdd(number));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "  "})
+    void shouldReturnTrueForNullOrBlankStrings(String input) {
+        assertTrue(isBlank(input));
+    }
+
+    @ParameterizedTest
+    @NullSource
+    void shouldReturnTrueForNullInputs(String input) {
+        assertTrue(isBlank(input));
+    }
+
+    @ParameterizedTest
+    @EmptySource
+    void shouldReturnTrueForEmptyStrings(String input) {
+        assertTrue(isBlank(input));
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    void shouldReturnTrueForNullAndEmptyStrings(String input) {
+        assertTrue(isBlank(input));
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"  ", "\t", "\n"})
+    void shouldReturnTrueForAllTypesOfBlankStrings(String input) {
+        assertTrue(isBlank(input));
     }
 
     @ParameterizedTest
@@ -82,6 +114,31 @@ public class ParameterizedTests {
             String input, String expected) {
         String actualValue = input.toUpperCase();
         assertEquals(expected, actualValue);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideStringsForIsBlank")
+    void shouldReturnTrueForNullOrBlankStrings(String input, boolean expected) {
+        assertEquals(expected, isBlank(input));
+    }
+
+    @ParameterizedTest
+    @FieldSource("cities")
+    void shouldReturnFalseWhenTheArgHasAtLEastOneCharacter(String arg) {
+        assertFalse(isBlank(arg));
+    }
+
+    private static Stream<Arguments> provideStringsForIsBlank() {
+        return Stream.of(
+                Arguments.of(null, true),
+                Arguments.of("", true),
+                Arguments.of("  ", true),
+                Arguments.of("not blank", false)
+        );
+    }
+
+    private boolean isBlank(String s) {
+        return s == null || s.trim().isEmpty();
     }
 
     private boolean isOdd(Integer number) {
