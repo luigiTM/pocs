@@ -15,4 +15,8 @@ public class OrderService {
     public Order saveOrder(Order order) {
         return this.orderRepository.saveOrder(order);
     }
+
+    public void deleteOrder(Integer id) {
+        this.orderRepository.deleteOrder(id);
+    }
 }

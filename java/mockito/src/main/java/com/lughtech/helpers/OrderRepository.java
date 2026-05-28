@@ -21,4 +21,8 @@ public class OrderRepository {
         this.inMemoryStore.put(id, savedOrder);
         return savedOrder;
     }
+
+    public void deleteOrder(Integer id) {
+        this.inMemoryStore.remove(id);
+    }
 }
