@@ -1,5 +1,6 @@
 package com.lughtech.mockito.basics;
 
+import com.lughtech.helpers.NotificationService;
 import com.lughtech.helpers.Order;
 import com.lughtech.helpers.OrderRepository;
 import com.lughtech.helpers.OrderService;
@@ -19,11 +20,14 @@ public class SpyTest {
     @Spy
     private OrderRepository orderRepository;
 
+    private NotificationService notificationService;
+
     private OrderService orderService;
 
     @BeforeEach
     void setup() {
-        orderService = new OrderService(orderRepository);
+        notificationService = mock(NotificationService.class);
+        orderService = new OrderService(orderRepository, notificationService);
     }
 
     @Test
