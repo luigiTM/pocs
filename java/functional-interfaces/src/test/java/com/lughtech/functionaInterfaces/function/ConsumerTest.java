@@ -10,7 +10,7 @@ import java.util.Map;
 public class ConsumerTest {
 
     @Test
-    void givenListOfNames_thenPrintNames() {
+    void shouldPrintNamesForListOfNames() {
         List<String> names = Arrays.asList("John", "Freddy", "Samuel");
 
         //forEach receives a consumer
@@ -18,7 +18,7 @@ public class ConsumerTest {
     }
 
     @Test
-    void givenListOfNamesAndAges_thenPrintNamesAndAges() {
+    void shouldPrintNamesAndAgesForListOfNamesAndAges() {
         Map<String, Integer> ages = new HashMap<>();
         ages.put("John", 25);
         ages.put("Freddy", 24);

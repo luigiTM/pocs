@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OperatorTest {
 
     @Test
-    void givenText_whenToUpperCase_thenReturnTEXT() {
+    void shouldReturnTextWhenConvertingTextToUpperCase() {
         UnaryOperator<String> toUpperCase = String::toUpperCase;
 
         assertEquals("TEXT", toUpperCase.apply("text"));
     }
 
     @Test
-    void givenNumber_whenSumAll_thenSum() {
+    void shouldReturnSumWhenSummingAllNumbers() {
         List<Integer> values = Arrays.asList(3, 5, 8, 9, 12);
         BinaryOperator<Integer> sumAll = Integer::sum;
 

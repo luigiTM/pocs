@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PersonReflectionTest {
 
     @Test
-    public void givenObject_whenGetsClassName_thenCorrect() {
+    public void shouldGetClassNameFromObject() {
         Object person = new Kid("Matthew", 1);
         Class<?> clazz = person.getClass();
 
@@ -23,7 +23,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenObject_whenGetsFieldNamesAtRuntime_thenCorrect() {
+    public void shouldGetFieldNamesAtRuntimeFromObject() {
         Object person = new Kid("Matthew", 1);
         Field[] fields = person.getClass().getDeclaredFields();
 
@@ -34,7 +34,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenRecognisesModifiers_thenCorrect() throws ClassNotFoundException {
+    public void shouldRecogniseModifiersFromClass() throws ClassNotFoundException {
         Class<?> kidClass = Class.forName("com.lughtech.reflection.model.Kid");
         Class<?> personClass = Class.forName("com.lughtech.reflection.model.Person");
 
@@ -47,7 +47,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsPackageInfo_thenCorrect() {
+    public void shouldGetPackageInfoFromClass() {
         Kid kid = new Kid("Matthew", 1);
         Class<?> goatClass = kid.getClass();
         Package pkg = goatClass.getPackage();
@@ -56,7 +56,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsSuperClass_thenCorrect() {
+    public void shouldGetSuperClassFromClass() {
         Kid goat = new Kid("Matthew", 1);
         String str = "any string";
 
@@ -68,7 +68,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsImplementedInterfaces_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetImplementedInterfacesFromClass() throws ClassNotFoundException {
         Class<?> kidClass = Class.forName("com.lughtech.reflection.model.Kid");
         Class<?> personClass = Class.forName("com.lughtech.reflection.model.Person");
 
@@ -82,7 +82,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsConstructor_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetConstructorFromClass() throws ClassNotFoundException {
         Class<?> kidClass = Class.forName("com.lughtech.reflection.model.Kid");
 
         Constructor<?>[] constructors = kidClass.getConstructors();
@@ -92,7 +92,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsFields_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetFieldsFromClass() throws ClassNotFoundException {
         Class<?> personClass = Class.forName("com.lughtech.reflection.model.Person");
         Field[] fields = personClass.getDeclaredFields();
 
@@ -103,7 +103,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsMethods_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetMethodsFromClass() throws ClassNotFoundException {
         Class<?> animalClass = Class.forName("com.lughtech.reflection.model.Person");
         Method[] methods = animalClass.getDeclaredMethods();
         List<String> actualMethods = getMethodNames(methods);
@@ -114,7 +114,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsAllConstructors_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetAllConstructorsFromClass() throws ClassNotFoundException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Constructor<?>[] constructors = adultClass.getConstructors();
 
@@ -122,7 +122,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsEachConstructorByParamTypes_thenCorrect() throws ClassNotFoundException, NoSuchMethodException {
+    public void shouldGetEachConstructorByParamTypesFromClass() throws ClassNotFoundException, NoSuchMethodException {
         Class<?> birdClass = Class.forName("com.lughtech.reflection.model.Adult");
 
         // There is no need for assertion since we’ll get a NoSuchMethodException and the test will automatically
@@ -133,7 +133,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenInstantiatesObjectsAtRuntime_thenCorrect()
+    public void shouldInstantiateObjectsAtRuntimeFromClass()
             throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
             InstantiationException, IllegalAccessException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
@@ -156,7 +156,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsPublicFields_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetPublicFieldsFromClass() throws ClassNotFoundException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Field[] fields = adultClass.getFields();
 
@@ -165,7 +165,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsPublicFieldByName_thenCorrect() throws ClassNotFoundException, NoSuchFieldException {
+    public void shouldGetPublicFieldByNameFromClass() throws ClassNotFoundException, NoSuchFieldException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Field field = adultClass.getField("TYPE");
 
@@ -173,7 +173,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsDeclaredFields_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetDeclaredFieldsFromClass() throws ClassNotFoundException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Field[] fields = adultClass.getDeclaredFields();
 
@@ -182,7 +182,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsFieldsByName_thenCorrect() throws ClassNotFoundException, NoSuchFieldException {
+    public void shouldGetFieldsByNameFromClass() throws ClassNotFoundException, NoSuchFieldException {
         Class<?> birdClass = Class.forName("com.lughtech.reflection.model.Adult");
         Field field = birdClass.getDeclaredField("isWorking");
 
@@ -190,7 +190,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClassField_whenGetsType_thenCorrect() throws ClassNotFoundException, NoSuchFieldException {
+    public void shouldGetTypeFromClassField() throws ClassNotFoundException, NoSuchFieldException {
         Field field = Class.forName("com.lughtech.reflection.model.Adult")
                 .getDeclaredField("isWorking");
         Class<?> fieldClass = field.getType();
@@ -199,7 +199,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClassField_whenSetsAndGetsValue_thenCorrect() throws ClassNotFoundException, NoSuchMethodException, NoSuchFieldException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public void shouldSetAndGetValueFromClassField() throws ClassNotFoundException, NoSuchMethodException, NoSuchFieldException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Adult adult = (Adult) adultClass.getConstructor().newInstance();
         Field field = adultClass.getDeclaredField("isWorking");
@@ -215,7 +215,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClassField_whenGetsAndSetsWithNull_thenCorrect() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+    public void shouldGetAndSetWithNullFromClassField() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Field field = adultClass.getField("TYPE");
         field.setAccessible(true);
@@ -224,7 +224,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsAllPublicMethods_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetAllPublicMethodsFromClass() throws ClassNotFoundException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Method[] methods = adultClass.getMethods();
         List<String> methodNames = getMethodNames(methods);
@@ -235,7 +235,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenClass_whenGetsOnlyDeclaredMethods_thenCorrect() throws ClassNotFoundException {
+    public void shouldGetOnlyDeclaredMethodsFromClass() throws ClassNotFoundException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         List<String> actualMethodNames
                 = getMethodNames(adultClass.getDeclaredMethods());
@@ -249,7 +249,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenMethodName_whenGetsMethod_thenCorrect() throws Exception {
+    public void shouldGetMethodFromMethodName() throws Exception {
         Adult adult = new Adult();
         Method walksMethod = adult.getClass().getDeclaredMethod("isWorking");
         Method setWalksMethod = adult.getClass().getDeclaredMethod("setWorking", boolean.class);
@@ -259,7 +259,7 @@ public class PersonReflectionTest {
     }
 
     @Test
-    public void givenMethod_whenInvokes_thenCorrect() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public void shouldInvokeMethod() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> adultClass = Class.forName("com.lughtech.reflection.model.Adult");
         Adult adult = (Adult) adultClass.getConstructor().newInstance();
         Method setWorkingMethod = adultClass.getDeclaredMethod("setWorking", boolean.class);

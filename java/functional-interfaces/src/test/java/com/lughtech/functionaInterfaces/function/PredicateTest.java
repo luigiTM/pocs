@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PredicateTest {
 
     @Test
-    void givenName_whenStartsWithLetterA_thenReturnTrue() {
+    void shouldReturnTrueWhenNameStartsWithLetterA() {
         Predicate<String> startWithLetterA = text -> text.toLowerCase().startsWith("a");
 
         assertTrue(startWithLetterA.test("Angela"));

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SupplierTest {
 
     @Test
-    void whenReturnFixedValue_thenReturnFixedValue() {
+    void shouldReturnFixedValue() {
         //Suppliers have no parameters and return a value
         Supplier<String> fixedValue = () -> "fixedValue";
 

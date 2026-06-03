@@ -24,7 +24,7 @@ public class AggregatorServiceTest {
     private ApiTask anotherApiTask;
 
     @Test
-    void givenApiTask_whenSuccess_thenReturnResultWithSuccess() {
+    void shouldReturnResultWithSuccessWhenApiTaskSucceeds() {
         apiTask = mock(RandomUserApiTask.class);
         when(apiTask.call())
                 .thenReturn(new ApiResult("Test API", true, 200, "body: { OK }", 100, null));
@@ -42,7 +42,7 @@ public class AggregatorServiceTest {
     }
 
     @Test
-    void givenApiTask_whenFailed_thenReturnResultWithFailure() {
+    void shouldReturnResultWithFailureWhenApiTaskFails() {
         apiTask = mock(RandomUserApiTask.class);
         when(apiTask.call())
                 .thenReturn(new ApiResult("Test API", false, 500, null, 100, "Error"));
@@ -60,7 +60,7 @@ public class AggregatorServiceTest {
     }
 
     @Test
-    void givenTwoApiTasks_whenSuccess_thenReturnResultWithSuccess() {
+    void shouldReturnResultWithSuccessWhenTwoApiTasksSucceed() {
         apiTask = mock(RandomUserApiTask.class);
         anotherApiTask = mock(RandomUserApiTask.class);
         when(apiTask.call())
@@ -82,7 +82,7 @@ public class AggregatorServiceTest {
     }
 
     @Test
-    void givenTwoApiTasks_whenSuccessAndFailure_thenReturnResultWithSuccessAndFailure() {
+    void shouldReturnResultWithSuccessAndFailureWhenTwoApiTasksSucceedAndFail() {
         apiTask = mock(RandomUserApiTask.class);
         anotherApiTask = mock(RandomUserApiTask.class);
         when(apiTask.call())

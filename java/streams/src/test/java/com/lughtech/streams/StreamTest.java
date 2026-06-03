@@ -16,14 +16,14 @@ public class StreamTest {
     private final List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
 
     @Test
-    void givenListOfNumber_whenAllNumberSmallerThanTen_thenReturnFalse() {
+    void shouldReturnFalseWhenAllNumbersAreSmallerThanTen() {
         boolean allNumbersGreaterThanTen = numbers.stream().allMatch(number -> number > 10);
 
         assertFalse(allNumbersGreaterThanTen);
     }
 
     @Test
-    void givenListOfNumber_whenAllNumberGreaterThanTwenty_thenReturnTrue() {
+    void shouldReturnTrueWhenAllNumbersAreGreaterThanTwenty() {
         boolean allNumbersSmallerThanTwenty = numbers.stream().allMatch(number -> number < 20);
 
         assertTrue(allNumbersSmallerThanTwenty);
@@ -31,63 +31,63 @@ public class StreamTest {
 
 
     @Test
-    void givenListOfNumber_whenAnyNumberGreaterThenFive_thenReturnTrue() {
+    void shouldReturnTrueWhenAnyNumberIsGreaterThanFive() {
         boolean anyNumberGreaterThenFive = numbers.stream().anyMatch(number -> number > 5);
 
         assertTrue(anyNumberGreaterThenFive);
     }
 
     @Test
-    void givenListOfNumber_whenAnyNumberGreaterThenEleven_thenReturnFalse() {
+    void shouldReturnFalseWhenAnyNumberIsGreaterThanEleven() {
         boolean anyNumberGreaterThenEleven = numbers.stream().anyMatch(number -> number > 11);
 
         assertFalse(anyNumberGreaterThenEleven);
     }
 
     @Test
-    void givenListOfNumber_whenNoneMatchLessThenZero_thenReturnTrue() {
+    void shouldReturnTrueWhenNoNumbersAreLessThanZero() {
         boolean anyNumberGreaterThenEleven = numbers.stream().noneMatch(number -> number < 0);
 
         assertTrue(anyNumberGreaterThenEleven);
     }
 
     @Test
-    void givenListOfNumber_whenNoneMatchGreaterThenZero_thenReturnFalse() {
+    void shouldReturnFalseWhenNoNumbersAreGreaterThanZero() {
         boolean anyNumberGreaterThenEleven = numbers.stream().noneMatch(number -> number > 0);
 
         assertFalse(anyNumberGreaterThenEleven);
     }
 
     @Test
-    void givenListOfNumber_whenReduceWithSum_thenReturnSum() {
+    void shouldReturnSumWhenReducingNumbersWithSum() {
         Integer sum = numbers.stream().reduce(0, Integer::sum);
 
         assertEquals(55, sum);
     }
 
     @Test
-    void givenListOfNumber_whenReduceMax_thenReturnTen() {
+    void shouldReturnTenWhenReducingNumbersWithMax() {
         Integer max = numbers.stream().reduce(0, Integer::max);
 
         assertEquals(10, max);
     }
 
     @Test
-    void givenListOfNumber_whenCount_thenReturnTen() {
+    void shouldReturnTenWhenCountingNumbers() {
         long count = numbers.stream().count();
 
         assertEquals(10, count);
     }
 
     @Test
-    void givenListOfNumber_whenCountAfterFilterEvenNumbers_thenReturnFive() {
+    void shouldReturnFiveWhenCountingEvenNumbers() {
         long count = numbers.stream().filter(number -> number % 2 == 0 ).count();
 
         assertEquals(5, count);
     }
 
     @Test
-    void givenListOfNumber_whenCollectToMap_thenReturnMap() {
+    void shouldReturnMapWhenCollectingNumbersToMap() {
         Map<Integer, Integer> map = numbers.stream().collect(Collectors.toMap(Function.identity(), n -> n));
 
         assertEquals(10, map.size());
@@ -104,7 +104,7 @@ public class StreamTest {
     }
 
     @Test
-    void givenListOfNumber_whenFindAny_thenReturnOne() {
+    void shouldReturnOneWhenFindingAnyNumber() {
         Optional<Integer> any = numbers.stream().findAny();
 
         assertFalse(any.isEmpty());
@@ -112,7 +112,7 @@ public class StreamTest {
     }
 
     @Test
-    void givenListOfNumber_whenFindAnyFilteringEvenNumber_thenReturnTwo() {
+    void shouldReturnTwoWhenFindingAnyEvenNumber() {
         Optional<Integer> any = numbers.stream().filter(number -> number % 2 == 0).findAny();
 
         assertFalse(any.isEmpty());
@@ -120,7 +120,7 @@ public class StreamTest {
     }
 
     @Test
-    void givenListOfNumber_whenFindFirst_thenReturnOne() {
+    void shouldReturnOneWhenFindingFirstNumber() {
         Optional<Integer> any = numbers.stream().findFirst();
 
         assertFalse(any.isEmpty());
@@ -128,7 +128,7 @@ public class StreamTest {
     }
 
     @Test
-    void givenListOfNumber_whenFindFirstFilteringGreaterThanFive_thenReturnSix() {
+    void shouldReturnSixWhenFindingFirstNumberGreaterThanFive() {
         Optional<Integer> any = numbers.stream().filter(number -> number > 5).findFirst();
 
         assertFalse(any.isEmpty());
@@ -136,7 +136,7 @@ public class StreamTest {
     }
 
     @Test
-    void givenListOfNumber_whenMapToAddOne_thenReturnListAddedOneToEachElement() {
+    void shouldReturnListWithOneAddedToEachElement() {
         List<Integer> mapped = numbers.stream().map(number -> number + 1).toList();
 
         assertFalse(mapped.isEmpty());

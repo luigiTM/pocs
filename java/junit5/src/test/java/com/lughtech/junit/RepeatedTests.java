@@ -25,14 +25,14 @@ public class RepeatedTests {
     }
 
     @RepeatedTest(value = 10, failureThreshold = 2)
-    void whenGeneratingRandomNumber_thenNumberShouldBeWithinRange() {
+    void shouldGenerateRandomNumberWithinRange() {
         int number = random.nextInt(10);
         System.out.println("Asserting number " + number);
         assertTrue(number < 8);
     }
 
     @RepeatedTest(3)
-    void repeatedTestWithRepetitionInfo(RepetitionInfo repetitionInfo) {
+    void shouldExposeRepetitionInfo(RepetitionInfo repetitionInfo) {
         System.out.println("Repetition #" + repetitionInfo.getCurrentRepetition());
 
         assertEquals(3, repetitionInfo.getTotalRepetitions());

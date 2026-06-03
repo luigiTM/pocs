@@ -26,7 +26,7 @@ public class NestedTests {
         }
 
         @Test
-        void firstNestedTest() {
+        void shouldExecuteFirstNestedTest() {
             System.out.println("This is a nested test");
         }
 
@@ -46,7 +46,7 @@ public class NestedTests {
         }
 
         @Test
-        void secondNestedTest() {
+        void shouldExecuteSecondNestedTest() {
             System.out.println("This is another nested test");
         }
 

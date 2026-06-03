@@ -56,7 +56,7 @@ public class BasicsTest {
     }
 
     @Test
-    void shouldCreateDateTimeZoneUTC() {
+    void shouldCreateDateTimeZoneUtc() {
         DateTimeZone dateTimeZoneUTC = DateTimeZone.UTC;
 
         assertEquals("UTC", dateTimeZoneUTC.getID());

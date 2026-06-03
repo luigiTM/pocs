@@ -9,49 +9,49 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FunctionTest {
 
     @Test
-    void givenText_whenReturnFirstLetter_thenReturnT() {
+    void shouldReturnTWhenReturningFirstLetterFromText() {
         Function<String, Character> returnFirstLetter = s -> s.charAt(0);
 
         assertEquals('T', returnFirstLetter.apply("Text"));
     }
 
     @Test
-    void givenOne_whenConvertIntToString_thenReturnStringOne() {
+    void shouldReturnStringOneWhenConvertingIntOneToString() {
         IntFunction<String> convertIntToString = String::valueOf;
 
         assertEquals("1", convertIntToString.apply(1));
     }
 
     @Test
-    void givenOne_whenConvertLongToString_thenReturnStringOne() {
+    void shouldReturnStringOneWhenConvertingLongOneToString() {
         LongFunction<String> convertLongToString = String::valueOf;
 
         assertEquals("1", convertLongToString.apply(1L));
     }
 
     @Test
-    void givenOne_whenConvertDoubleToString_thenReturnStringOne() {
+    void shouldReturnStringOneWhenConvertingDoubleOneToString() {
         DoubleFunction<String> convertDoubleToString = String::valueOf;
 
         assertEquals("1.0", convertDoubleToString.apply(1D));
     }
 
     @Test
-    void givenStringOne_whenConvertStringToInt_thenReturnOne() {
+    void shouldReturnOneWhenConvertingStringOneToInt() {
         ToIntFunction<String> convertStringToIn = Integer::valueOf;
 
         assertEquals(1, convertStringToIn.applyAsInt("1"));
     }
 
     @Test
-    void givenStringOne_whenConvertStringToLong_thenReturnOne() {
+    void shouldReturnOneWhenConvertingStringOneToLong() {
         ToLongFunction<String> convertStringToLong = Long::valueOf;
 
         assertEquals(1L, convertStringToLong.applyAsLong("1"));
     }
 
     @Test
-    void givenStringOne_whenConvertStringToDouble_thenReturnOne() {
+    void shouldReturnOneWhenConvertingStringOneToDouble() {
         ToDoubleFunction<String> convertStringToDouble = Double::valueOf;
 
         assertEquals(1D, convertStringToDouble.applyAsDouble("1"));
@@ -61,7 +61,7 @@ public class FunctionTest {
     // IntToLongFunction, LongToIntFunction, LongToDoubleFunction
 
     @Test
-    void givenText_whenReturnConcatenatedText_thenReturnConcatenated() {
+    void shouldReturnConcatenatedTextWhenConcatenatingText() {
         BiFunction<String, String, String> concatenateText = (s1, s2) -> s1 + " " +s2;
 
         assertEquals("Concatenated Text", concatenateText.apply("Concatenated", "Text"));

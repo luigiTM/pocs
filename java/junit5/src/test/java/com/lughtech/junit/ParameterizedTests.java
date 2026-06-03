@@ -78,7 +78,7 @@ public class ParameterizedTests {
 
     @ParameterizedTest
     @EnumSource(value = Month.class, names = ".+BER", mode = EnumSource.Mode.MATCH_ANY)
-    void shouldReturnTrueIfFourMonthsEndWithBER(Month month) {
+    void shouldReturnTrueIfFourMonthsEndWithBer(Month month) {
         EnumSet<Month> months =
                 EnumSet.of(Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER);
         assertTrue(months.contains(month));
@@ -110,7 +110,7 @@ public class ParameterizedTests {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/test_input.csv", numLinesToSkip = 1)
-    void shouldGenerateTheExpectedValueUpperCaseForCSVFile(
+    void shouldGenerateTheExpectedValueUpperCaseForCsvFile(
             String input, String expected) {
         String actualValue = input.toUpperCase();
         assertEquals(expected, actualValue);
@@ -124,7 +124,7 @@ public class ParameterizedTests {
 
     @ParameterizedTest
     @FieldSource("cities")
-    void shouldReturnFalseWhenTheArgHasAtLEastOneCharacter(String arg) {
+    void shouldReturnFalseWhenTheArgHasAtLeastOneCharacter(String arg) {
         assertFalse(isBlank(arg));
     }
 
