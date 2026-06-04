@@ -30,7 +30,7 @@ public class DurationAndPeriodTest {
     }
 
     @Test
-    void shouldHaveSecondsOfDuration() {
+    void shouldHaveSevenThousandAndTwoHundredSecondsOfDuration() {
         var midday = LocalTime.of(12, 0, 0);
         var twoHours = LocalTime.of(14, 0, 0);
         var duration = Duration.between(midday, twoHours);
@@ -50,8 +50,8 @@ public class DurationAndPeriodTest {
     @Test
     void shouldHaveTwoMonthsOfPeriod() {
         var firstOfJanuaryTwoThousand = LocalDate.of(2000, 1, 1);
-        var thirdOfJanuaryTwoThousand = LocalDate.of(2000, 3, 1);
-        var period = Period.between(firstOfJanuaryTwoThousand, thirdOfJanuaryTwoThousand);
+        var firstOfMarchTwoThousand = LocalDate.of(2000, 3, 1);
+        var period = Period.between(firstOfJanuaryTwoThousand, firstOfMarchTwoThousand);
 
         assertEquals(2, period.getMonths());
     }
@@ -59,8 +59,8 @@ public class DurationAndPeriodTest {
     @Test
     void shouldHaveTwoYearsOfPeriod() {
         var firstOfJanuaryTwoThousand = LocalDate.of(2000, 1, 1);
-        var thirdOfJanuaryTwoThousand = LocalDate.of(2002, 1, 1);
-        var period = Period.between(firstOfJanuaryTwoThousand, thirdOfJanuaryTwoThousand);
+        var firstOfJanuaryTwoThousandAndTwo = LocalDate.of(2002, 1, 1);
+        var period = Period.between(firstOfJanuaryTwoThousand, firstOfJanuaryTwoThousandAndTwo);
 
         assertEquals(2, period.getYears());
     }
