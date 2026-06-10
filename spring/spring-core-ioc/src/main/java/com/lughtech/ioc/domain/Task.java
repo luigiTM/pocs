@@ -28,4 +28,13 @@ public class Task {
     public boolean isCompleted() {
         return completed;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", completed=" + completed +
+                '}';
+    }
 }

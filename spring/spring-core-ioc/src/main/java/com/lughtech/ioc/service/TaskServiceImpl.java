@@ -2,6 +2,8 @@ package com.lughtech.ioc.service;
 
 import com.lughtech.ioc.domain.Task;
 import com.lughtech.ioc.repository.TaskRepository;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,16 @@ public class TaskServiceImpl implements TaskService {
 
     public TaskServiceImpl(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Created TaskService");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("Destroyed TaskService");
     }
 
     @Override
