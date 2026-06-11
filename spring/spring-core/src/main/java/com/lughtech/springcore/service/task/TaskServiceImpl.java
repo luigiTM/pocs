@@ -1,7 +1,7 @@
-package com.lughtech.ioc.service;
+package com.lughtech.springcore.service.task;
 
-import com.lughtech.ioc.domain.Task;
-import com.lughtech.ioc.repository.TaskRepository;
+import com.lughtech.springcore.domain.Task;
+import com.lughtech.springcore.repository.task.TaskRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.lughtech.ioc.domain;
+package com.lughtech.springcore.domain;
 
 import java.util.UUID;
 

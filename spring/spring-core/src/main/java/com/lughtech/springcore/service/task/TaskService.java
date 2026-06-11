@@ -1,6 +1,6 @@
-package com.lughtech.ioc.service;
+package com.lughtech.springcore.service.task;
 
-import com.lughtech.ioc.domain.Task;
+import com.lughtech.springcore.domain.Task;
 
 import java.util.List;
 import java.util.UUID;
