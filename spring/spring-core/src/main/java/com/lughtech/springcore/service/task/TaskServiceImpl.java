@@ -30,8 +30,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void createTask(String title) {
-        var newTask = new Task(title);
-        taskRepository.save(newTask);
+        taskRepository.save(new Task(title));
     }
 
     @Override

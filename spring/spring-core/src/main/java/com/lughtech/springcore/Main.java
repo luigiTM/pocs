@@ -25,10 +25,12 @@ public class Main {
         System.out.println("Retrieving JobService");
         var jobService = context.getBean(JobService.class);
         jobService.createJob("This is a job");
+        jobService.listJobs().forEach(System.out::println);
 
         System.out.println("Retrieving another JobService");
         var anotherJobService = context.getBean(JobService.class);
         anotherJobService.createJob("This is another job");
+        jobService.listJobs().forEach(System.out::println);
 
         System.out.println("Closing context");
         context.close();

@@ -2,13 +2,13 @@ package com.lughtech.springcore.domain;
 
 import java.util.UUID;
 
-public class Task {
+public class Job {
 
     private final UUID id;
     private final String title;
     private boolean completed;
 
-    public Task(String title) {
+    public Job(String title) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.completed = false;
@@ -32,7 +32,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "Job{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", completed=" + completed +
