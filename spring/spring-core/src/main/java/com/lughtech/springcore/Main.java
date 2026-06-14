@@ -1,6 +1,7 @@
 package com.lughtech.springcore;
 
 import com.lughtech.springcore.config.AppConfig;
+import com.lughtech.springcore.config.Values;
 import com.lughtech.springcore.service.job.JobService;
 import com.lughtech.springcore.service.task.TaskService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
 
     static void main() {
+
         System.out.println("Creating context");
         var context = new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -31,6 +33,9 @@ public class Main {
         var anotherJobService = context.getBean(JobService.class);
         anotherJobService.createJob("This is another job");
         jobService.listJobs().forEach(System.out::println);
+
+        var values = context.getBean(Values.class);
+        System.out.println("Loaded configurations -> " + values);
 
         System.out.println("Closing context");
         context.close();

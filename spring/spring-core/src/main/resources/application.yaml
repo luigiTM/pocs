@@ -1,0 +1,18 @@
+poc:
+  values:
+    # String
+    app-name: Spring Core POC
+    # Integer
+    max-retries: 3
+    # Long
+    timeout: 30000
+    # Double
+    tax-rate: 0.175
+    # Boolean
+    feature-enabled: true
+    # List<String>
+    supported-languages: pt-BR, en-US
+    # Map<String, String>
+    headers:  "{'Content-Type': 'application/json', 'Accept': 'application/json', 'X-App': 'poc'}"
+    # Enum
+    environment: DEVELOPMENT
