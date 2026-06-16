@@ -25,7 +25,7 @@ public class Values {
     @Value("${poc.values.feature-enabled}")
     Boolean featureEnabled;
 
-    @Value("${poc.values.supported-languages}")
+    @Value("#{'${poc.values.supported-languages}'.split(',')}")
     List<String> supportedLanguages;
 
     @Value("#{${poc.values.headers}}")

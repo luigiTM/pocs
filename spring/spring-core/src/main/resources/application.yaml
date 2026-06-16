@@ -11,7 +11,7 @@ poc:
     # Boolean
     feature-enabled: true
     # List<String>
-    supported-languages: pt-BR, en-US
+    supported-languages: pt-BR,en-US
     # Map<String, String>
     headers:  "{'Content-Type': 'application/json', 'Accept': 'application/json', 'X-App': 'poc'}"
     # Enum
