@@ -1,8 +1,10 @@
 package com.lughtech.rest.client;
 
 import com.lughtech.rest.dto.externaluser.ExternalUser;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Component
 public class ExternalUserClient {
 
     public static final String URL = "https://jsonplaceholder.typicode.com/users/";
