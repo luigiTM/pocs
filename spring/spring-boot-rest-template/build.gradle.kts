@@ -22,6 +22,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-restclient")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework:spring-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-resttestclient")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
