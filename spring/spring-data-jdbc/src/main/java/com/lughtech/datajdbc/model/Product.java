@@ -1,6 +1,7 @@
 package com.lughtech.datajdbc.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
@@ -9,10 +10,19 @@ import java.math.BigDecimal;
 public class Product {
 
     @Id
+    @Column("id")
     private Long id;
+
+    @Column("name")
     private String name;
+
+    @Column("description")
     private String description;
+
+    @Column("price")
     private BigDecimal price;
+
+    @Column("active")
     private boolean active;
 
     public Product(Long id, String name, String description, BigDecimal price, boolean active) {
