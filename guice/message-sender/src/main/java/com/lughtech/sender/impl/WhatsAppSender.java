@@ -1,20 +1,22 @@
 package com.lughtech.sender.impl;
 
-import org.apache.logging.log4j.Logger;
-
 import com.google.inject.Inject;
+import com.lughtech.client.phone.whatsapp.WhatsappClient;
 import com.lughtech.domain.Message;
 import com.lughtech.sender.MessageSender;
 
 public class WhatsAppSender implements MessageSender {
 
+    private WhatsappClient whatsappClient;
+
     @Inject
-    private Logger logger;
+    public WhatsAppSender(WhatsappClient whatsappClient) {
+        this.whatsappClient = whatsappClient;
+    }
 
     @Override
-    public void sender(Message message) {
-        var info = "Sending message to " + message.recipient().phoneNumber() + " through whatsapp";
-        logger.info(info);
+    public void send(Message message) {
+        this.whatsappClient.sendWhatsappMessage(message.recipient().phoneNumber(), message.content());
     }
     
 }

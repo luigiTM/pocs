@@ -1,20 +1,22 @@
 package com.lughtech.sender.impl;
 
-import org.apache.logging.log4j.core.Logger;
-
 import com.google.inject.Inject;
+import com.lughtech.client.email.EmailClient;
 import com.lughtech.domain.Message;
 import com.lughtech.sender.MessageSender;
 
 public class EmailSender implements MessageSender {
 
+    private EmailClient emailClient;
+
     @Inject
-    private Logger logger;
+    public EmailSender(EmailClient emailClient) {
+        this.emailClient = emailClient;
+    }
 
     @Override
-    public void sender(Message message) {
-        var info = "Sending message to " + message.recipient().email() + " through email";
-        logger.info(info);
+    public void send(Message message) {
+        this.emailClient.sendEmail(message.recipient().email(), message.subject(), message.content());
     }
     
 }

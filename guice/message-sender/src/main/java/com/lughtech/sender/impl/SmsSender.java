@@ -1,20 +1,22 @@
 package com.lughtech.sender.impl;
 
-import org.apache.logging.log4j.Logger;
-
 import com.google.inject.Inject;
+import com.lughtech.client.phone.sms.SmsClient;
 import com.lughtech.domain.Message;
 import com.lughtech.sender.MessageSender;
 
 public class SmsSender implements MessageSender{
 
+    private SmsClient smsClient;
+
     @Inject
-    private Logger logger;
+    public SmsSender(SmsClient smsClient) {
+        this.smsClient = smsClient;
+    }
 
     @Override
-    public void sender(Message message) {
-        var info = "Sending message to " + message.recipient().phoneNumber() + " through sms";
-        logger.info(info);
+    public void send(Message message) {
+        this.smsClient.sendSms(message.recipient().phoneNumber(), message.content());
     }
     
 }
