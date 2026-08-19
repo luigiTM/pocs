@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    application
 }
 
 group = "com.lughtech"
@@ -7,6 +8,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass.set("com.lughtech.Application")
 }
 
 dependencies {
