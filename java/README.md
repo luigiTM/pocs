@@ -14,6 +14,7 @@ independent Gradle project with its own wrapper.
 | [java-time-and-joda-time](java-time-and-joda-time) | Creation, conversion, manipulation, duration, and period examples for `java.time` and Joda-Time. | `cd java/java-time-and-joda-time && ./gradlew test` |
 | [jdk-features/http-client](jdk-features/http-client) | Java `HttpClient` CRUD-style calls against JSONPlaceholder with Jackson JSON mapping. | `cd java/jdk-features/http-client && ./gradlew build` |
 | [jdk-features/switch-expressions](jdk-features/switch-expressions) | Arithmetic calculator implemented with Java switch expressions. | `cd java/jdk-features/switch-expressions && ./gradlew test` |
+| [jdk-features/virtual-threads](jdk-features/virtual-threads) | Concurrent API aggregation using `Executors.newVirtualThreadPerTaskExecutor()`. | `cd java/jdk-features/virtual-threads && ./gradlew test` |
 | [junit5](junit5) | JUnit Jupiter examples for core annotations, assertions, assumptions, lifecycle, and test variants. | `cd java/junit5 && ./gradlew test` |
 | [locks-and-atomic-variables](locks-and-atomic-variables) | Account transfers using locks plus atomic counters for metrics. | `cd java/locks-and-atomic-variables && ./gradlew test` |
 | [mockito](mockito) | Mockito basics and advanced examples using an order service test fixture. | `cd java/mockito && ./gradlew test` |
@@ -54,3 +55,5 @@ Java runner after compilation.
 - The `jdk-features/http-client` project calls
   `https://jsonplaceholder.typicode.com`, so running its `Main` class requires
   network access.
+- The `jdk-features/virtual-threads` project requires JDK 21 or later and
+  calls public cat, joke, and random-user APIs when its `Main` class runs.
