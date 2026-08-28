@@ -18,14 +18,14 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter:4.1.1")
-	implementation("org.springframework.boot:spring-boot-starter-web:4.1.1")
-	implementation("org.springframework.boot:spring-boot-starter-aop:3.5.16")
+	implementation(platform("org.springframework.boot:spring-boot-dependencies:4.1.1"))
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-aspectj")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-h2console:4.1.1")
+	implementation("org.springframework.boot:spring-boot-h2console")
 
 	runtimeOnly("com.h2database:h2")
-	}
+}
 
 tasks.withType<Test> {
 	useJUnitPlatform()

@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getMethodName(@PathVariable Integer id) throws InterruptedException {
+    public User getUser(@PathVariable Integer id) throws InterruptedException {
         return userService.getUser(id);
     }
     

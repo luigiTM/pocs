@@ -1,6 +1,8 @@
 package com.lughtech.endpoint_metrics.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.lughtech.endpoint_metrics.domain.User;
 import com.lughtech.endpoint_metrics.domain.dto.UserDto;
@@ -22,7 +24,8 @@ public class UserService {
 
     public User getUser(Integer id) throws InterruptedException {
         Thread.sleep(2500);
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
     
 }
