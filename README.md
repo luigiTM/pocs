@@ -3,12 +3,13 @@
 A collection of proof-of-concept projects used to explore language features,
 APIs, and implementation patterns.
 
-## Implemented PoCs
+## Java PoCs
 
-### Java
+All PoCs are standalone Gradle projects under [`java`](java). Each project has
+its own Gradle wrapper; see [the Java overview](java/README.md) for setup and
+commands.
 
-The Java folder contains standalone Gradle projects, each focused on a specific
-topic:
+### Core Java
 
 | PoC | Description |
 | --- | --- |
@@ -27,18 +28,22 @@ topic:
 | [Switch Expressions](java/jdk-features/switch-expressions) | Calculator example using Java switch expressions. |
 | [Virtual Threads](java/jdk-features/virtual-threads) | Concurrent API aggregation using a virtual-thread-per-task executor. |
 
-See [java/README.md](java/README.md) for Java-specific setup and commands.
-
 ### Spring
 
 | PoC | Description |
 | --- | --- |
-| [Spring Core](spring/spring-core) | Java-configured application context with component scanning, bean scopes, lifecycle hooks, and YAML-backed configuration. |
-| [Spring Boot REST Template](spring/spring-boot-rest-template) | REST endpoint that retrieves and maps users from JSONPlaceholder with `RestTemplate`. |
-| [Spring Data JDBC](spring/spring-data-jdbc) | Product REST API backed by Spring Data JDBC and an in-memory H2 database. |
+| [Endpoint Metrics](java/spring/endpoint-metrics) | Spring AOP logging of controller execution times in a user API backed by H2. |
+| [Spring Core](java/spring/spring-core) | Java-configured application context with component scanning, bean scopes, lifecycle hooks, and YAML-backed configuration. |
+| [Spring Boot REST Template](java/spring/spring-boot-rest-template) | REST endpoint that retrieves and maps users from JSONPlaceholder with `RestTemplate`. |
+| [Spring Data JDBC](java/spring/spring-data-jdbc) | Product REST API backed by Spring Data JDBC and an in-memory H2 database. |
+
+See [the Spring overview](java/spring/README.md) for project commands.
 
 ### Google Guice
 
 | PoC | Description |
 | --- | --- |
-| [Message Sender](guice/message-sender) | Dependency injection and map bindings for interchangeable email, SMS, and WhatsApp senders. |
+| [Message Sender](java/guice/message-sender) | Dependency injection and map bindings for interchangeable email, SMS, and WhatsApp senders. |
+| [Message Sender Web](java/guice/message-sender-web) | HTTP service that routes email, SMS, and WhatsApp messages through Guice-managed senders. |
+
+See [the Guice overview](java/guice/README.md) for project commands.

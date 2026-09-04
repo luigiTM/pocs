@@ -22,6 +22,13 @@ independent Gradle project with its own wrapper.
 | [reflection-api](reflection-api) | Reflection over classes, constructors, fields, methods, modifiers, and interfaces. | `cd java/reflection-api && ./gradlew test` |
 | [streams](streams) | Stream API examples for matching, reducing, counting, collecting, finding, and mapping. | `cd java/streams && ./gradlew test` |
 
+## Framework projects
+
+| Area | Projects | How to verify |
+| --- | --- | --- |
+| [Google Guice](guice) | `message-sender`, `message-sender-web` | `cd java/guice/<project> && ./gradlew test` |
+| [Spring](spring) | `endpoint-metrics`, `spring-core`, `spring-boot-rest-template`, `spring-data-jdbc` | `cd java/spring/<project> && ./gradlew test` |
+
 ## Requirements
 
 - JDK installed locally.
@@ -57,3 +64,5 @@ Java runner after compilation.
   network access.
 - The `jdk-features/virtual-threads` project requires JDK 21 or later and
   calls public cat, joke, and random-user APIs when its `Main` class runs.
+- Some Spring projects specify a Java 25 toolchain. See the individual project
+  build files and READMEs for application-specific requirements and commands.

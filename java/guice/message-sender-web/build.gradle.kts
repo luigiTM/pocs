@@ -15,11 +15,12 @@ application {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter:4.1.1")
-    implementation("org.springframework.boot:spring-boot-starter-web:4.1.1")
+    implementation("org.eclipse.jetty:jetty-server:12.1.3")
+    implementation("org.eclipse.jetty.ee10:jetty-ee10-servlet:12.1.3")
     implementation("com.google.inject:guice:7.0.0")
     implementation("org.apache.logging.log4j:log4j-api:2.24.1")
     implementation("org.apache.logging.log4j:log4j-core:2.24.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.20.0")
 
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
