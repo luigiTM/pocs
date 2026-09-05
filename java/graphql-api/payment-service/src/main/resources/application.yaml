@@ -1,0 +1,11 @@
+
+server:
+  port: 8093
+spring:
+  application:
+    name: payment-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/graphql_api_poc
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver

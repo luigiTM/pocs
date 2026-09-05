@@ -1,0 +1,10 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/graphql_api_poc
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
