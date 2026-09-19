@@ -1,0 +1,14 @@
+type Product {
+    id: ID!
+    name: String!
+    description: String
+    price: Float!
+    imageUrl: String
+    stock: Int
+    createdAt: String
+    updatedAt: String
+}
+
+extend type Query {
+    findProductById(id: ID!): Product
+}

@@ -28,4 +28,8 @@ public class OrderService {
         return orderRepository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
     }
+
+    public List<Order> findByCustomerId(UUID customerId) {
+        return orderRepository.findByCustomerId(customerId);
+    }
 }

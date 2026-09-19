@@ -1,4 +1,4 @@
-package com.lughtech.graphqlapi.schema;
+package com.lughtech.graphqlapi.model;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;

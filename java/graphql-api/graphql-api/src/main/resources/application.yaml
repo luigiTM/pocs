@@ -6,3 +6,7 @@ spring:
   graphql:
     graphiql:
       enabled: true
+
+logging:
+  level:
+    com.lughtech.graphqlapi: DEBUG

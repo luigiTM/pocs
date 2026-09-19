@@ -30,4 +30,9 @@ public class OrderController {
     public Order findById(@PathVariable UUID id) {
         return orderService.findById(id);
     }
+
+    @GetMapping("/customer/{customerId}")
+    public List<Order> findByCustomerId(@PathVariable UUID customerId) {
+        return orderService.findByCustomerId(customerId);
+    }
 }

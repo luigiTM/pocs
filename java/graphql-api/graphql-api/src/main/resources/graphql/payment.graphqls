@@ -1,0 +1,20 @@
+type Payment {
+    id: ID!
+    amount: Float!
+    status: PaymentStatus!
+    paidAt: String
+    createdAt: String!
+    updatedAt: String
+}
+
+enum PaymentStatus {
+    PENDING,
+    AUTHORIZED,
+    PAID,
+    FAILED,
+    REFUNDED
+}
+
+extend type Query {
+    findPaymentById(id: ID!)
+}

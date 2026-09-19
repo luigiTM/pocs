@@ -1,0 +1,31 @@
+type Order {
+    id: ID!
+    customerId: ID!
+    status: OrderStatus!
+    total: Float!
+    createdAt: String!
+    updatedAt: String!
+    payment: Payment!
+    items: [OrderItem!]!
+}
+
+type OrderItem {
+    id: ID!
+    product: Product!
+    quantity: Int!
+    unitPrice: Float!
+    createdAt: String!
+}
+
+enum OrderStatus {
+    PENDING
+    CONFIRMED
+    PROCESSING
+    SHIPPED
+    DELIVERED
+    CANCELLED
+}
+
+extend type Query {
+    findOrderById(id: ID!): Order
+}
