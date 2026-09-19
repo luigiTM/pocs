@@ -28,4 +28,9 @@ public class PaymentService {
         return paymentRepository.findById(id)
                 .orElseThrow(() -> new PaymentNotFoundException(id));
     }
+
+    public Payment findByOrderId(UUID orderId) {
+        return paymentRepository.findByOrderId(orderId)
+                .orElseThrow(() -> new PaymentNotFoundException(orderId));
+    }
 }

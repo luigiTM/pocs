@@ -16,5 +16,5 @@ enum PaymentStatus {
 }
 
 extend type Query {
-    findPaymentById(id: ID!)
+    findPaymentById(id: ID!): Payment
 }

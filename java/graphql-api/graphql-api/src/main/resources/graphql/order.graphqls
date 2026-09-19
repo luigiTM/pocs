@@ -5,7 +5,7 @@ type Order {
     total: Float!
     createdAt: String!
     updatedAt: String!
-    payment: Payment!
+    payment: Payment
     items: [OrderItem!]!
 }
 
