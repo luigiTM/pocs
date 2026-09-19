@@ -1,0 +1,17 @@
+type Customer {
+    id: String!,
+    name: String!,
+    email: String!,
+    createdAt: String!,
+    updatedAt: String
+}
+
+input CustomerInput {
+    id: String!,
+    name: String!,
+    email: String!
+}
+
+type Query {
+    findCustomerById(id: String): Customer
+}
