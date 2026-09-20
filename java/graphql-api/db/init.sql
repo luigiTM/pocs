@@ -81,20 +81,21 @@ CREATE INDEX idx_order_items_product_id ON "order".order_items(product_id);
 CREATE INDEX idx_payments_order_id ON payment.payments(order_id);
 CREATE INDEX idx_products_name ON product.products(name);
 
-INSERT INTO customer.customers (name, email) VALUES
-    ('Alice Silva', 'alice@example.com'),
-    ('Bob Santos', 'bob@example.com'),
-    ('Carlos Oliveira', 'carlos@example.com'),
-    ('Daniel Costa', 'daniel@example.com'),
-    ('Eduardo Martins', 'eduardo@example.com'),
-    ('Fernanda Lima', 'fernanda@example.com'),
-    ('Gabriel Rocha', 'gabriel@example.com'),
-    ('Helena Souza', 'helena@example.com'),
-    ('Isabela Mendes', 'isabela@example.com'),
-    ('João Pereira', 'joao@example.com');
+INSERT INTO customer.customers (id, name, email) VALUES
+    ('10000000-0000-0000-0000-000000000001', 'Alice Silva', 'alice@example.com'),
+    ('10000000-0000-0000-0000-000000000002', 'Bob Santos', 'bob@example.com'),
+    ('10000000-0000-0000-0000-000000000003', 'Carlos Oliveira', 'carlos@example.com'),
+    ('10000000-0000-0000-0000-000000000004', 'Daniel Costa', 'daniel@example.com'),
+    ('10000000-0000-0000-0000-000000000005', 'Eduardo Martins', 'eduardo@example.com'),
+    ('10000000-0000-0000-0000-000000000006', 'Fernanda Lima', 'fernanda@example.com'),
+    ('10000000-0000-0000-0000-000000000007', 'Gabriel Rocha', 'gabriel@example.com'),
+    ('10000000-0000-0000-0000-000000000008', 'Helena Souza', 'helena@example.com'),
+    ('10000000-0000-0000-0000-000000000009', 'Isabela Mendes', 'isabela@example.com'),
+    ('10000000-0000-0000-0000-000000000010', 'João Pereira', 'joao@example.com');
 
-INSERT INTO product.products (name, description, price, image_url, stock) VALUES
+INSERT INTO product.products (id, name, description, price, image_url, stock) VALUES
     (
+        '20000000-0000-0000-0000-000000000001',
         'Mechanical Keyboard',
         'RGB mechanical keyboard',
         499.90,
@@ -102,6 +103,7 @@ INSERT INTO product.products (name, description, price, image_url, stock) VALUES
         50
     ),
     (
+        '20000000-0000-0000-0000-000000000002',
         'Gaming Mouse',
         'High precision gaming mouse',
         249.90,
@@ -109,6 +111,7 @@ INSERT INTO product.products (name, description, price, image_url, stock) VALUES
         100
     ),
     (
+        '20000000-0000-0000-0000-000000000003',
         'Gaming Headset',
         '7.1 surround gaming headset',
         399.90,
@@ -116,6 +119,7 @@ INSERT INTO product.products (name, description, price, image_url, stock) VALUES
         30
     ),
     (
+        '20000000-0000-0000-0000-000000000004',
         'Gaming Monitor 27"',
         '27 inch 144Hz gaming monitor',
         1899.90,
@@ -123,6 +127,7 @@ INSERT INTO product.products (name, description, price, image_url, stock) VALUES
         20
     ),
     (
+        '20000000-0000-0000-0000-000000000005',
         'Webcam Full HD',
         '1080p USB webcam',
         299.90,
@@ -130,70 +135,75 @@ INSERT INTO product.products (name, description, price, image_url, stock) VALUES
         40
     );
 
-INSERT INTO "order".orders (customer_id, status, total, created_at, updated_at) VALUES
-    ((SELECT id FROM customer.customers WHERE email = 'alice@example.com'),
+INSERT INTO "order".orders (id, customer_id, status, total, created_at, updated_at) VALUES
+    ('30000000-0000-0000-0000-000000000001',
+        '10000000-0000-0000-0000-000000000001',
         'DELIVERED', 999.70, NOW() - INTERVAL '15 days', NOW() - INTERVAL '10 days'),
-    ((SELECT id FROM customer.customers WHERE email = 'bob@example.com'),
+    ('30000000-0000-0000-0000-000000000002',
+        '10000000-0000-0000-0000-000000000002',
         'PENDING', 399.90, NOW() - INTERVAL '2 days', NOW() - INTERVAL '2 days'),
-    ((SELECT id FROM customer.customers WHERE email = 'carlos@example.com'),
+    ('30000000-0000-0000-0000-000000000003',
+        '10000000-0000-0000-0000-000000000003',
         'SHIPPED', 2199.80, NOW() - INTERVAL '7 days', NOW() - INTERVAL '1 day'),
-    ((SELECT id FROM customer.customers WHERE email = 'fernanda@example.com'),
+    ('30000000-0000-0000-0000-000000000004',
+        '10000000-0000-0000-0000-000000000006',
         'CANCELLED', 999.80, NOW() - INTERVAL '12 days', NOW() - INTERVAL '11 days'),
-    ((SELECT id FROM customer.customers WHERE email = 'joao@example.com'),
+    ('30000000-0000-0000-0000-000000000005',
+        '10000000-0000-0000-0000-000000000010',
         'PROCESSING', 849.70, NOW() - INTERVAL '3 days', NOW() - INTERVAL '1 day');
 
-INSERT INTO "order".order_items (order_id, product_id, quantity, unit_price, created_at) VALUES
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'alice@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Mechanical Keyboard'),
+INSERT INTO "order".order_items (id, order_id, product_id, quantity, unit_price, created_at) VALUES
+    ('40000000-0000-0000-0000-000000000001',
+        '30000000-0000-0000-0000-000000000001',
+        '20000000-0000-0000-0000-000000000001',
         1, 499.90, NOW() - INTERVAL '15 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'alice@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Gaming Mouse'),
+    ('40000000-0000-0000-0000-000000000002',
+        '30000000-0000-0000-0000-000000000001',
+        '20000000-0000-0000-0000-000000000002',
         2, 249.90, NOW() - INTERVAL '15 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'bob@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Gaming Headset'),
+    ('40000000-0000-0000-0000-000000000003',
+        '30000000-0000-0000-0000-000000000002',
+        '20000000-0000-0000-0000-000000000003',
         1, 399.90, NOW() - INTERVAL '2 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'carlos@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Gaming Monitor 27"'),
+    ('40000000-0000-0000-0000-000000000004',
+        '30000000-0000-0000-0000-000000000003',
+        '20000000-0000-0000-0000-000000000004',
         1, 1899.90, NOW() - INTERVAL '7 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'carlos@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Webcam Full HD'),
+    ('40000000-0000-0000-0000-000000000005',
+        '30000000-0000-0000-0000-000000000003',
+        '20000000-0000-0000-0000-000000000005',
         1, 299.90, NOW() - INTERVAL '7 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'fernanda@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Mechanical Keyboard'),
+    ('40000000-0000-0000-0000-000000000006',
+        '30000000-0000-0000-0000-000000000004',
+        '20000000-0000-0000-0000-000000000001',
         2, 499.90, NOW() - INTERVAL '12 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'joao@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Webcam Full HD'),
+    ('40000000-0000-0000-0000-000000000007',
+        '30000000-0000-0000-0000-000000000005',
+        '20000000-0000-0000-0000-000000000005',
         2, 299.90, NOW() - INTERVAL '3 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'joao@example.com'),
-        (SELECT id FROM product.products WHERE name = 'Gaming Mouse'),
+    ('40000000-0000-0000-0000-000000000008',
+        '30000000-0000-0000-0000-000000000005',
+        '20000000-0000-0000-0000-000000000002',
         1, 249.90, NOW() - INTERVAL '3 days');
 
-INSERT INTO payment.payments (order_id, amount, status, paid_at, created_at, updated_at) VALUES
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'alice@example.com'),
+INSERT INTO payment.payments (id, order_id, amount, status, paid_at, created_at, updated_at) VALUES
+    ('50000000-0000-0000-0000-000000000001',
+        '30000000-0000-0000-0000-000000000001',
         999.70, 'PAID', NOW() - INTERVAL '14 days',
         NOW() - INTERVAL '15 days', NOW() - INTERVAL '14 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'bob@example.com'),
+    ('50000000-0000-0000-0000-000000000002',
+        '30000000-0000-0000-0000-000000000002',
         399.90, 'PENDING', NULL,
         NOW() - INTERVAL '2 days', NOW() - INTERVAL '2 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'carlos@example.com'),
+    ('50000000-0000-0000-0000-000000000003',
+        '30000000-0000-0000-0000-000000000003',
         2199.80, 'PAID', NOW() - INTERVAL '6 days',
         NOW() - INTERVAL '7 days', NOW() - INTERVAL '6 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'fernanda@example.com'),
+    ('50000000-0000-0000-0000-000000000004',
+        '30000000-0000-0000-0000-000000000004',
         999.80, 'REFUNDED', NOW() - INTERVAL '12 days',
         NOW() - INTERVAL '12 days', NOW() - INTERVAL '11 days'),
-    ((SELECT o.id FROM "order".orders o JOIN customer.customers c ON c.id = o.customer_id
-        WHERE c.email = 'joao@example.com'),
+    ('50000000-0000-0000-0000-000000000005',
+        '30000000-0000-0000-0000-000000000005',
         849.70, 'AUTHORIZED', NULL,
         NOW() - INTERVAL '3 days', NOW() - INTERVAL '1 day');

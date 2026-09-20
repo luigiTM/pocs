@@ -77,6 +77,15 @@ docker compose up -d
 
 PostgreSQL is initialized from [`db/init.sql`](db/init.sql), which creates the schemas, tables, indexes, and sample data.
 
+The initialization script runs only when PostgreSQL creates a new data volume. If the POC was started before the static UUID seed data was added, recreate the local database volume:
+
+```bash
+docker compose down -v
+docker compose up -d
+```
+
+> **Warning:** `docker compose down -v` permanently deletes the data stored in the local POC database volume.
+
 Database credentials:
 
 ```text
@@ -179,11 +188,21 @@ GraphiQL variables:
 
 ```json
 {
-  "customerId": "replace-with-a-customer-uuid"
+  "customerId": "10000000-0000-0000-0000-000000000001"
 }
 ```
 
-Because the seed script generates UUIDs, a customer ID can be obtained with:
+The seed data uses static UUIDs to make the POC easy to explore. UUID prefixes identify each resource type:
+
+| Prefix | Resource | Example |
+|---|---|---|
+| `1` | Customer | `10000000-0000-0000-0000-000000000001` |
+| `2` | Product | `20000000-0000-0000-0000-000000000001` |
+| `3` | Order | `30000000-0000-0000-0000-000000000001` |
+| `4` | Order item | `40000000-0000-0000-0000-000000000001` |
+| `5` | Payment | `50000000-0000-0000-0000-000000000001` |
+
+Alice Silva always has customer ID `10000000-0000-0000-0000-000000000001`. The complete customer list can be queried with:
 
 ```sql
 SELECT id, name, email FROM customer.customers;
