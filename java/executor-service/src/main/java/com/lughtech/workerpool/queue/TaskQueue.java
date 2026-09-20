@@ -4,7 +4,6 @@ import com.lughtech.workerpool.core.Task;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 
 public class TaskQueue {
 

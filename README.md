@@ -5,8 +5,9 @@ APIs, and implementation patterns.
 
 ## Java PoCs
 
-All PoCs are standalone Gradle projects under [`java`](java). Each project has
-its own Gradle wrapper; see [the Java overview](java/README.md) for setup and
+The PoCs live under [`java`](java). Most are standalone Gradle projects with
+their own wrapper; the GraphQL example is a suite of independently runnable
+services. See [the Java overview](java/README.md) for general setup and
 commands.
 
 ### Core Java
@@ -38,6 +39,16 @@ commands.
 | [Spring Data JDBC](java/spring/spring-data-jdbc) | Product REST API backed by Spring Data JDBC and an in-memory H2 database. |
 
 See [the Spring overview](java/spring/README.md) for project commands.
+
+### GraphQL and Microservices
+
+| PoC | Description |
+| --- | --- |
+| [GraphQL Microservices API](java/graphql-api) | E-commerce backend with a Spring for GraphQL aggregation layer over customer, order, payment, and product REST services backed by PostgreSQL. |
+
+The PoC includes five Spring Boot applications, Docker Compose infrastructure,
+sample data, and GraphiQL. See [its README](java/graphql-api/README.md) for the
+architecture, prerequisites, startup instructions, ports, and example queries.
 
 ### Google Guice
 

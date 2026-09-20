@@ -6,3 +6,7 @@
 
 ### Mac OS ###
 .DS_Store
+
+### Agents ###
+.agents
+.codex
