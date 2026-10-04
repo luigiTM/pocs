@@ -58,3 +58,16 @@ architecture, prerequisites, startup instructions, ports, and example queries.
 | [Message Sender Web](java/guice/message-sender-web) | HTTP service that routes email, SMS, and WhatsApp messages through Guice-managed senders. |
 
 See [the Guice overview](java/guice/README.md) for project commands.
+
+## TypeScript PoCs
+
+### Data Structures and Algorithms
+
+| PoC | Description |
+| --- | --- |
+| [Data Structures and Algorithms](typescript/data-structures) | Implementations of arrays, ordered arrays, linked lists, stacks, queues, and segment trees, plus bubble, selection, and insertion sorting algorithms. |
+
+The project uses TypeScript and Jest. From `typescript/data-structures`, install
+the dependencies with `npm install`, run the test suite with `npm test`, or
+compile it with `npm run build`. See [its README](typescript/data-structures/README.md)
+for the project structure and usage commands.
