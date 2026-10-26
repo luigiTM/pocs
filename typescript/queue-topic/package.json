@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "dev": "tsx --watch src/server.ts",
+    "dev": "tsx --watch src/server.ts",
     "start": "node dist/server.js",
     "build": "tsc",
     "type-check": "tsc --noEmit",
@@ -16,8 +16,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@12.9.1",
+  "packageManager": "pnpm@12.15.0",
   "dependencies": {
+    "amqplib": "^2.2.0",
     "express": "^5.2.1",
     "typescript": "^7.0.2"
   },

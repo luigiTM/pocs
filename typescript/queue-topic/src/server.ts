@@ -1,7 +1,6 @@
 import express from 'express'
 import orderRoutes from './routes/order.routes';
-
-import { Router, type Request, type Response } from 'express';
+import "./rabbitmq/consumer";
 
 const app = express();
 
