@@ -1,0 +1,12 @@
+{
+  "name": "kafka-consumer-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "create-topics": "node create-topics.js",
+    "produce": "node produce-messages.js"
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  }
+}
