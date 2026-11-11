@@ -10,6 +10,7 @@ const topicNames = (process.env.KAFKA_TOPICS ?? 'messages')
   .filter(Boolean);
 const numPartitions = Number.parseInt(process.env.KAFKA_PARTITIONS ?? '1', 10);
 const replicationFactor = Number.parseInt(process.env.KAFKA_REPLICATION_FACTOR ?? '1', 10);
+const minInSyncReplicas = Number.parseInt(process.env.KAFKA_MIN_IN_SYNC_REPLICAS ?? '1', 10)
 
 if (brokers.length === 0 || topicNames.length === 0 || numPartitions < 1 || replicationFactor < 1) {
   throw new Error('Set valid brokers, topic names, partitions, and replication factor.');
@@ -22,7 +23,13 @@ try {
   await admin.connect();
   const created = await admin.createTopics({
     waitForLeaders: true,
-    topics: topicNames.map((topic) => ({ topic, numPartitions, replicationFactor })),
+    topics: topicNames.map((topic) => ({
+      topic,
+      numPartitions,
+      replicationFactor,
+      configEntries: [
+        { name: 'min.insync.replicas', value: String(minInSyncReplicas) }
+      ] })),
   });
 
   console.log(created

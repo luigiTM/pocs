@@ -29,7 +29,6 @@ Consumers have two ways to read:
   - Allow for horizontal scalability, several consumers from the same group share the partitions.
   - Rebalance happens when a consumer enters or leaves the group.
 
-
 - assign(manual assignment)
   - Consumer chooses which partitions to consume.
   - No group coordination, usefully for specific scenarios.
@@ -44,6 +43,6 @@ Kafka offers three options, with clear trade-offs:
 
 - at-most-once: acks=0 in the producer and/or offset commit before processing.
   - can lose messages, but they are never duplicated.
-- at-lest-once: acks=all + retries no consumer, consumer commits offset only after processing.
+- at-lest-once: `acks=all` + retries no consumer, consumer commits offset only after processing.
   - no messages are lost, but duplicates can happen if something fails after processing and before commiting.
 - exactly-once: idempotent producer + kakfa transactions, consumer with `isolation.level=read_commited`
