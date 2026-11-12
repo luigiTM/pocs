@@ -27,7 +27,7 @@ public class KafkaConfig {
         Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "poc-consumer-group");
-        config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JacksonJsonDeserializer.class);
         config.put(JacksonJsonDeserializer.TRUSTED_PACKAGES, "com.lughtech.kafkapoc.model");
@@ -67,6 +67,7 @@ public class KafkaConfig {
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JacksonJsonSerializer.class);
         configProps.put(ProducerConfig.ACKS_CONFIG, "all");
+        configProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
