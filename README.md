@@ -59,6 +59,19 @@ architecture, prerequisites, startup instructions, ports, and example queries.
 
 See [the Guice overview](java/guice/README.md) for project commands.
 
+## JavaScript PoCs
+
+### React
+
+| PoC | Description |
+| --- | --- |
+| [E-commerce starter](javascript/react/ecommerce) | React 19 and Vite starter application with a small interactive counter. |
+| [Simple Chatbot (Vite)](javascript/react/simple-chatbot-vite) | React chat interface using the `supersimpledev` chatbot library. |
+| [Simple Chatbot](javascript/react/simple-chatbot) | Browser-based React chat demo using libraries loaded from a CDN. |
+
+The Vite projects use pnpm. Run `pnpm install` and `pnpm dev` in either
+project directory; each also provides `pnpm build` and `pnpm lint`.
+
 ## TypeScript PoCs
 
 ### Data Structures and Algorithms
@@ -71,3 +84,12 @@ The project uses TypeScript and Jest. From `typescript/data-structures`, install
 the dependencies with `npm install`, run the test suite with `npm test`, or
 compile it with `npm run build`. See [its README](typescript/data-structures/README.md)
 for the project structure and usage commands.
+
+### Messaging
+
+| PoC | Description |
+| --- | --- |
+| [RabbitMQ Queue vs. Kafka Topic](typescript/queue-topic) | Compares competing RabbitMQ queue consumers with Kafka consumers in separate groups. |
+
+This project uses Docker Compose and pnpm. See its README for startup steps,
+service addresses, and the order publishing example.

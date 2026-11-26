@@ -1,16 +1,28 @@
-# React + Vite
+# React + Vite Starter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React 19 and Vite starter project. The current page displays the
+starter artwork, documentation links, and an interactive counter; it is a
+scaffold rather than a completed e-commerce storefront.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js
+- pnpm
 
-## React Compiler
+## Run locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+From this directory:
 
-## Expanding the ESLint configuration
+```bash
+pnpm install
+pnpm dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Vite prints the local URL when the development server starts. Available
+project commands are:
+
+```bash
+pnpm build
+pnpm lint
+pnpm preview
+```

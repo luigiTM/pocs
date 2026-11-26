@@ -1,7 +1,8 @@
 # Java PoCs
 
-A collection of standalone Java proof-of-concept projects. Each directory is an
-independent Gradle project with its own wrapper.
+A collection of Java proof-of-concept projects. Most examples are standalone
+Gradle projects with their own wrapper; GraphQL and Spring Kafka have their own
+infrastructure and run instructions.
 
 ## Projects
 
@@ -22,12 +23,19 @@ independent Gradle project with its own wrapper.
 | [reflection-api](reflection-api) | Reflection over classes, constructors, fields, methods, modifiers, and interfaces. | `cd java/reflection-api && ./gradlew test` |
 | [streams](streams) | Stream API examples for matching, reducing, counting, collecting, finding, and mapping. | `cd java/streams && ./gradlew test` |
 
+## Distributed systems
+
+| PoC | Focus | How to run |
+| --- | --- | --- |
+| [graphql-api](graphql-api) | GraphQL aggregation over four Spring Boot REST services and PostgreSQL. | Follow the Docker Compose and service startup steps in its README. |
+| [spring/kafka-consumer](spring/kafka-consumer) | Spring Kafka producer and two consumers demonstrating automatic and manual offset commits. | Start its Kafka cluster with Docker Compose, then run `./gradlew bootRun`. |
+
 ## Framework projects
 
 | Area | Projects | How to verify |
 | --- | --- | --- |
 | [Google Guice](guice) | `message-sender`, `message-sender-web` | `cd java/guice/<project> && ./gradlew test` |
-| [Spring](spring) | `endpoint-metrics`, `spring-core`, `spring-boot-rest-template`, `spring-data-jdbc` | `cd java/spring/<project> && ./gradlew test` |
+| [Spring](spring) | `endpoint-metrics`, `spring-core`, `spring-boot-rest-template`, `spring-data-jdbc`, `kafka-consumer` | `cd java/spring/<project> && ./gradlew test` |
 
 ## Requirements
 

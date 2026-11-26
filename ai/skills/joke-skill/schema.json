@@ -1,0 +1,27 @@
+{
+  "name": "getJoke",
+  "description": "Fetch a single programming joke",
+  "input": {},
+  "output": {
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "joke": { "type": "string" },
+          "category": { "type": "string", "const": "Programming" },
+          "safe": { "type": "boolean" }
+        },
+        "required": ["joke", "category"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" }
+        },
+        "required": ["error"],
+        "additionalProperties": false
+      }
+    ]
+  }
+}

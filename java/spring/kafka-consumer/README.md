@@ -1,48 +1,51 @@
-# Kafka PoC
+# Spring Kafka Consumer PoC
 
-Kafka is a distributed log, with replication and partitions.
+A Spring Boot application that publishes JSON messages to a three-broker Kafka
+cluster and consumes them with two consumer groups. One listener uses automatic
+offset commits; the other commits offsets manually. The producer enables
+idempotence and uses `acks=all`.
 
-## Key elements
+## Requirements
 
-- Topic: where the message are published.
-- Partition: each topic is divided into partitions, immutable ordered logs. The partition is the replication and parallelism unit.
-- Offset: each message receives a sequential number inside the partition. The consumer controls your position(offset) and can reset it to reprocess messages.
-- Broker: a kafka cluster server.
-- Consumer group: abstraction that allows to scale the consumption, each partition is assigned to a consumer inside the group, the group as a whole consume all partitions.
+- JDK 17 or later
+- Docker with Docker Compose
 
-## Producer
+## Run locally
 
-The producer chooses which partition to send(round-robin or based on a key) and defines when to consider a success write based on the ack parameter.
+Start the Kafka cluster from this directory:
 
-| ack        | Behavior                              | Guarantee                                             |
-|------------|---------------------------------------|-------------------------------------------------------|
-| 0          | Does not wait for broker confirmation | Can lose data(fire and forget)                        |
-| 1          | Wait for the leader confirmation      | Can lose data if the leader fails before confirmation |
-| all(or -1) | Waits for all replicas in sync        | Better durability                                     |
+```bash
+docker compose up -d
+```
 
-## Consumer
+Create the configured topics and publish sample messages using the helper
+scripts (see [scripts/README.md](scripts/README.md)), or start the application
+directly:
 
-Consumers have two ways to read:
+```bash
+./gradlew bootRun
+```
 
-- subscribe(consumer group):
-  - The consumer joins in a group and receives all assigned partitions.
-  - Allow for horizontal scalability, several consumers from the same group share the partitions.
-  - Rebalance happens when a consumer enters or leaves the group.
+The application listens on port `8081`. Its Kafka listeners and producer
+connect to the local broker addresses `localhost:19092`, `localhost:19093`,
+and `localhost:19094`.
 
-- assign(manual assignment)
-  - Consumer chooses which partitions to consume.
-  - No group coordination, usefully for specific scenarios.
+Publish a message through the HTTP endpoint:
 
-- Offset control:
-  - Auto-commit: The client commits offsets in the background periodically, risks losing messages if the commit happens before processing, or duplicates if the process fails after the processing and before the commit.
-  - Manual commit: Needs to commit after processing the message, gives total control and is the base for at-least-once delivery.
+```bash
+curl -X POST http://localhost:8081/api/messages/ -i
+```
 
-## Delivery guarantees
+The endpoint creates a message with a generated UUID and publishes it to
+`topic-with-replication`. Both consumer groups listen to that topic; inspect
+the application logs to see their processing and offset-commit behavior.
 
-Kafka offers three options, with clear trade-offs:
+The Kafka UI is available at <http://localhost:8080>. Stop the services with:
 
-- at-most-once: acks=0 in the producer and/or offset commit before processing.
-  - can lose messages, but they are never duplicated.
-- at-lest-once: `acks=all` + retries no consumer, consumer commits offset only after processing.
-  - no messages are lost, but duplicates can happen if something fails after processing and before commiting.
-- exactly-once: idempotent producer + kakfa transactions, consumer with `isolation.level=read_commited`
+```bash
+docker compose down
+```
+
+The producer and consumers use the topic `topic-with-replication`. The
+companion scripts also create `poc-consumer` and `topic-with-replication` by
+default; the latter has three partitions and replication factor three.
